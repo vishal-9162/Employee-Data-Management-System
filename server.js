@@ -130,13 +130,5 @@ app.get("/", (req, res) => {
 });
 
 // ===== Start Server =====
-app.listen(PORT, () => {
-  console.log(`
-  ╔══════════════════════════════════════════════╗
-  ║  🚀 Employee Data Management Server         ║
-  ║  📡 Running on: http://localhost:${PORT}       ║
-  ║  📊 API Endpoint: /api/register              ║
-  ║  💚 Health Check: /api/health                ║
-  ╚══════════════════════════════════════════════╝
-  `);
-});
+
+module.exports = app;
