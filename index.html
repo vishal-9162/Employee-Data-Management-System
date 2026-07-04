@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link data-mgx-overview="icon" rel="icon" href="https://public-frontend-1300249583.cos.ap-nanjing.myqcloud.com/commonfile/DefaultAppLogo.png" />
+    <title data-mgx-overview="title">Employee Data Management</title>
+    <link rel="stylesheet" href="./style.css">
+    <meta data-mgx-overview="description" name="description" content="Professional Employee Data Management System with Glassmorphism UI" />
+    <meta data-mgx-overview="og:title" property="og:title" content="Employee Data Management" />
+    <meta data-mgx-overview="og:description" property="og:description" content="Professional Employee Data Management System with Glassmorphism UI" />
+    <meta data-mgx-overview="og:image" property="og:image" content="https://public-frontend-1300249583.cos.ap-nanjing.myqcloud.com/commonfile/DefaultAppLogo.png" />
+    <meta data-mgx-overview="twitter:title" name="twitter:title" content="Employee Data Management" />
+    <meta data-mgx-overview="twitter:description" name="twitter:description" content="Professional Employee Data Management System with Glassmorphism UI" />
+    <meta data-mgx-overview="twitter:image" name="twitter:image" content="https://public-frontend-1300249583.cos.ap-nanjing.myqcloud.com/commonfile/DefaultAppLogo.png" />
+</head>
+
+<body>
+    <!-- Floating Particles -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="page-shell">
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loader">
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <p class="loader-text">Submitting Data...</p>
+            </div>
+        </div>
+
+        <!-- Success Screen -->
+        <div class="success-screen" id="successScreen">
+            <div class="success-card">
+                <div class="success-checkmark">
+                    <svg class="checkmark-svg" viewBox="0 0 52 52">
+                        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                </div>
+                <h2 class="success-title">Employee Data Submitted Successfully!</h2>
+                <p class="success-message">Your data has been recorded successfully.</p>
+                <button class="button button-primary" id="submitAnotherBtn" onclick="resetToForm()">
+                    <span class="btn-icon">📝</span> Submit Another Response
+                </button>
+            </div>
+        </div>
+
+        <!-- Form Panel -->
+        <div class="form-panel" id="formPanel">
+            <!-- Header -->
+            <div class="form-header">
+                <p class="eyebrow">📊 Management System</p>
+                <h1>Employee Data Entry</h1>
+                <p>Fill in the details below to submit employee travel & expense data</p>
+            </div>
+
+            <!-- Form -->
+            <form id="employeeForm" novalidate>
+                <div class="form-grid">
+
+                    <!-- Date -->
+                    <div class="field">
+                        <label for="date">📅 Date <span class="required">*</span></label>
+                        <input type="date" id="date" name="date" required>
+                        <span class="error-msg" id="dateError"></span>
+                    </div>
+
+                    <!-- Particulars -->
+                    <div class="field">
+                        <label for="particulars">📝 Particulars <span class="required">*</span></label>
+                        <input type="text" id="particulars" name="particulars" placeholder="Enter particulars" required>
+                        <span class="error-msg" id="particularsError"></span>
+                    </div>
+
+                    <!-- Invoice Available -->
+                    <div class="field">
+                        <label for="hasInvoice">🧾 Invoice Available <span class="required">*</span></label>
+                        <select id="hasInvoice" name="hasInvoice" required>
+                            <option value="">-- Select --</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <span class="error-msg" id="hasInvoiceError"></span>
+                    </div>
+
+                    <!-- Invoice Number (Conditional) -->
+                    <div class="field" id="invoiceField" style="display:none;">
+                        <label for="invoiceNo">🔢 Invoice Number <span class="required">*</span></label>
+                        <input type="text" id="invoiceNo" name="invoiceNo" placeholder="Enter invoice number">
+                        <span class="error-msg" id="invoiceNoError"></span>
+                    </div>
+
+                    <!-- Village -->
+                    <div class="field">
+                        <label for="village">🏘️ Village (Place) <span class="required">*</span></label>
+                        <input type="text" id="village" name="village" placeholder="Enter village name" required>
+                        <span class="error-msg" id="villageError"></span>
+                    </div>
+
+                    <!-- Working -->
+                    <div class="field">
+                        <label for="working">🔧 Working <span class="required">*</span></label>
+                        <select id="working" name="working" required>
+                            <option value="">-- Select --</option>
+                            <option value="Fitting">Fitting</option>
+                            <option value="Repairing">Repairing</option>
+                            <option value="Traveling / Repairing">Traveling / Repairing</option>
+                        </select>
+                        <span class="error-msg" id="workingError"></span>
+                    </div>
+
+                    <!-- Farmer Name -->
+                    <div class="field">
+                        <label for="farmerName">👨‍🌾 Farmer Name <span class="optional">(Optional)</span></label>
+                        <input type="text" id="farmerName" name="farmerName" placeholder="Enter farmer name">
+                    </div>
+
+                    <!-- Contact Number -->
+                    <div class="field">
+                        <label for="contactNo">📱 Contact Number <span class="required">*</span></label>
+                        <input type="tel" id="contactNo" name="contactNo" placeholder="Enter 10 digit mobile number" maxlength="10" required>
+                        <span class="error-msg" id="contactNoError"></span>
+                    </div>
+
+                    <!-- Mode of Travel -->
+                    <div class="field">
+                        <label for="mode">🚗 Mode of Travel <span class="required">*</span></label>
+                        <select id="mode" name="mode" required>
+                            <option value="">-- Select --</option>
+                            <option value="Bus">🚌 Bus</option>
+                            <option value="Taxi">🚖 Taxi</option>
+                            <option value="Train">🚆 Train</option>
+                        </select>
+                        <span class="error-msg" id="modeError"></span>
+                    </div>
+
+                    <!-- Number of Kilometers -->
+                    <div class="field">
+                        <label for="kilometers">📏 Number of Kilometers <span class="required">*</span></label>
+                        <input type="number" id="kilometers" name="kilometers" placeholder="Enter total kilometers" required>
+                        <span class="error-msg" id="kilometersError"></span>
+                    </div>
+
+                    <!-- Kilometers Amount -->
+                    <div class="field">
+                        <label for="kilometerAmount">💰 Kilometers Amount <span class="required">*</span></label>
+                        <input type="text" id="kilometerAmount" name="kilometerAmount" placeholder="e.g. 12+10+15" required>
+                        <span class="helper-text">Enter values like 12+10+15 (auto-calculated)</span>
+                        <span class="error-msg" id="kilometerAmountError"></span>
+                    </div>
+
+                    <!-- Expense Type -->
+                    <div class="field">
+                        <label for="expenseType">📋 Expense Type <span class="required">*</span></label>
+                        <select id="expenseType" name="expenseType" required>
+                            <option value="">-- Select --</option>
+                            <option value="Hotel Amount">Hotel Amount</option>
+                            <option value="Items Buy">Items Buy</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <span class="error-msg" id="expenseTypeError"></span>
+                    </div>
+
+                    <!-- Other Expenses Amount -->
+                    <div class="field">
+                        <label for="otherExpenses">💸 Other Expenses Amount</label>
+                        <input type="text" id="otherExpenses" name="otherExpenses" placeholder="e.g. 100+50">
+                        <span class="helper-text">Enter values like 100+50 (auto-calculated)</span>
+                    </div>
+
+                    <!-- Daily Allowance -->
+                    <div class="field">
+                        <label for="dailyAllowance">🏷️ Daily Allowance <span class="required">*</span></label>
+                        <input type="number" id="dailyAllowance" name="dailyAllowance" placeholder="Enter daily allowance" required>
+                        <span class="error-msg" id="dailyAllowanceError"></span>
+                    </div>
+
+                    <!-- Total Amount -->
+                    <div class="field field-total">
+                        <label for="totalAmount">🧮 Total Amount</label>
+                        <input type="text" id="totalAmount" name="totalAmount" readonly placeholder="Auto-calculated">
+                        <span class="helper-text">= Kilometers Amount + Other Expenses + Daily Allowance</span>
+                    </div>
+
+                </div>
+
+                <!-- Buttons -->
+                <div class="form-actions">
+                    <button type="submit" class="button button-primary" id="submitBtn">
+                        <span class="btn-icon">🚀</span> Submit Data
+                    </button>
+                    <button type="button" class="button button-secondary" onclick="clearForm()">
+                        <span class="btn-icon">🗑️</span> Clear Form
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="./script.js"></script>
+</body>
+
+</html>
