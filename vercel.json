@@ -4,6 +4,7 @@
     { "src": "index.html", "use": "@vercel/static" },
     { "src": "style.css", "use": "@vercel/static" },
     { "src": "script.js", "use": "@vercel/static" },
+    { "src": "assets/**", "use": "@vercel/static" },
     { "src": "api/register.js", "use": "@vercel/node" },
     { "src": "api/health.js", "use": "@vercel/node" }
   ],
@@ -11,7 +12,8 @@
     { "src": "/api/register", "dest": "/api/register.js" },
     { "src": "/api/health", "dest": "/api/health.js" },
     { "src": "/style.css", "dest": "/style.css" },
+    { "src": "/(.*)", "dest": "/index.html" },
     { "src": "/script.js", "dest": "/script.js" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    { "src": "/assets/(.*)", "dest": "/assets/$1" }
   ]
 }
