@@ -130,7 +130,7 @@
                     <!-- Contact Number -->
                     <div class="field">
                         <label for="contactNo">📱 Contact Number <span class="required">*</span></label>
-                        <input type="tel" id="contactNo" name="contactNo" placeholder="Enter 10 digit mobile number" maxlength="10" required>
+                        <input type="tel" id="contactNo" name="contactNo" placeholder="Enter 10 digit mobile number" maxlength="10" inputmode="numeric" pattern="[6-9][0-9]{9}" required>
                         <span class="error-msg" id="contactNoError"></span>
                     </div>
 
@@ -149,14 +149,14 @@
                     <!-- Number of Kilometers -->
                     <div class="field">
                         <label for="kilometers">📏 Number of Kilometers <span class="required">*</span></label>
-                        <input type="number" id="kilometers" name="kilometers" placeholder="Enter total kilometers" required>
+                        <input type="number" id="kilometers" name="kilometers" placeholder="Enter total kilometers" min="1" step="0.1" required>
                         <span class="error-msg" id="kilometersError"></span>
                     </div>
 
                     <!-- Kilometers Amount -->
                     <div class="field">
                         <label for="kilometerAmount">💰 Kilometers Amount <span class="required">*</span></label>
-                        <input type="text" id="kilometerAmount" name="kilometerAmount" placeholder="e.g. 12+10+15" required>
+                        <input type="text" id="kilometerAmount" name="kilometerAmount" placeholder="e.g. 12+10+15" inputmode="decimal" required>
                         <span class="helper-text">Enter values like 12+10+15 (auto-calculated)</span>
                         <span class="error-msg" id="kilometerAmountError"></span>
                     </div>
@@ -176,14 +176,15 @@
                     <!-- Other Expenses Amount -->
                     <div class="field">
                         <label for="otherExpenses">💸 Other Expenses Amount</label>
-                        <input type="text" id="otherExpenses" name="otherExpenses" placeholder="e.g. 100+50">
+                        <input type="text" id="otherExpenses" name="otherExpenses" placeholder="e.g. 100+50" inputmode="decimal">
                         <span class="helper-text">Enter values like 100+50 (auto-calculated)</span>
+                        <span class="error-msg" id="otherExpensesError"></span>
                     </div>
 
                     <!-- Daily Allowance -->
                     <div class="field">
                         <label for="dailyAllowance">🏷️ Daily Allowance <span class="required">*</span></label>
-                        <input type="number" id="dailyAllowance" name="dailyAllowance" placeholder="Enter daily allowance" required>
+                        <input type="number" id="dailyAllowance" name="dailyAllowance" placeholder="Enter daily allowance" min="0" step="0.01" required>
                         <span class="error-msg" id="dailyAllowanceError"></span>
                     </div>
 
